@@ -1,0 +1,35 @@
+#header{
+    background-color: grey;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+#accName{
+    color: #fff; 
+}
+
+.badge{
+    color: #000;
+}
+
+.button{
+    border: 1px solid #000;
+    border-radius: 3px;
+    background-color: white;
+}
+
+.button:hover{
+    background-color: gray;
+    color: #fff;
+}
+#button:hover{
+    background-color: red;
+}
+
+#btns{
+    display: flex;
+}
+#title{
+    color: #fff;
+}

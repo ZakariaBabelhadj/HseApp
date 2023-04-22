@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign Up</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+<body>
+    
+    <Header class="navbar" id="header">
+        
+        <div>
+            <h1 id="title">Réglementation HSE</h1>
+        </div>
+        <div class="btn-group-lg" id="btns">
+                <form method="post" action="{% url 'main' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-default button" >Principale Page</button>
+                </form>
+        </div>
+    </Header>
+
+<p>Welcome to my first Django project!</p>
+
+<form method="post" class="form-group">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

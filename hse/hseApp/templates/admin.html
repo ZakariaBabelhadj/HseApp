@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ism lWeb Admin</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <Header class="navbar" id="header">
+            {% if user.name != None %}
+                <div id="accName">{{ user.name }}</div>
+            {% else %}
+                <div id="accName">Account name</div>
+            {% endif %}
+
+            <div>
+                <h1 id="title">Réglementation HSE</h1>
+            </div>
+            <div class="btn-group-lg" id="btns">
+                {% if user.name != None %}
+                    <button type="button" class="btn">Logout</button>
+                {% else %}
+                    <form method="post" action="{% url 'Login' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-default button" >Login</button>
+                    </form>
+
+                    <form method="post" action="{% url 'SignUp' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-default button" >SignUp</button>
+                    </form>
+
+                    <form method="post" action="{% url 'AddLois' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-default button" id="button">Admin</button>
+                    </form>
+                
+                {% endif %}
+            </div>
+        </Header>
+        
+        <div class="container">
+            <div>
+                <h3>liste des lois</h3>
+                <form method="get">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <ul>
+                {% for item in my_data %}
+                <li class="list-group-item"> 
+                    <p class="badge"> {{ item.name }} - {{ item.section }} - {{ item.date }} </p> 
+                    <br />
+                    <p class="badge">{{ item.description }}</p>
+                    <div>
+                        <button type="submit" class="btn btn-default button">Modify</button>
+                        <button type="submit" class="btn btn-default button">Remove</button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
